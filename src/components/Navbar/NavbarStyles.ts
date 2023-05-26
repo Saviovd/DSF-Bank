@@ -1,15 +1,16 @@
 import { styled } from 'styled-components';
 
 export const NavBarStyle = styled.section`
-   margin-bottom: 0;
-
    display: flex;
    justify-content: space-between;
    padding: 4rem 2rem;
+   margin: 0 auto;
+   max-width: 1600px;
 
-   .logo {
-   }
+
    .navbar {
+      display: flex;
+      align-self: flex-end;
       .links {
          display: flex;
          gap: 2rem;
@@ -31,7 +32,7 @@ export const NavBarStyle = styled.section`
                flex-direction: column;
                position: absolute;
                width: 80vw;
-               height: calc(100vh - 8rem);
+               height: calc(100vh - 0rem);
                justify-content: center;
                align-items: center;
                gap: 7rem;
@@ -43,6 +44,10 @@ export const NavBarStyle = styled.section`
                overflow: hidden;
             }
          }
+      }
+
+      .isMenuNotVisible {
+         display: none;
       }
 
       .menu_button {

@@ -10,10 +10,21 @@ const Navbar = () => {
 
    const [toggleMenu, setToggleMenu] = React.useState(false);
 
-   const listMotionProps = {
-      open: { opacity: 1, x: '-80%' },
-      closed: { opacity: 0, x: '70%' },
-   };
+
+   const listMotionProps = () => {
+      if (typeof window !== 'undefined' && window.innerWidth <= 850) {
+         return {
+            open: { opacity: 1, x: '-90%' },
+            closed: { opacity: 0, x: '70%' },
+         }
+      } 
+
+      return {
+         open: { opacity: 1, x: 0 },
+         closed: { opacity: 1, x: 0 },
+      }
+   }
+
    const itemMotionProps = {
       open: { opacity: 1, x: 0 },
       closed: { opacity: 0, x: 50, duration: 1 }
@@ -31,21 +42,23 @@ const Navbar = () => {
                <AiOutlineMenuFold className='menu_button' onClick={() => setToggleMenu(!toggleMenu)} /> :
                <AiOutlineMenuUnfold className='menu_button' onClick={() => setToggleMenu(!toggleMenu)} />}
             <motion.ul
-               variants={listMotionProps}
-               animate={toggleMenu ? 'open' : 'closed'}
+               variants={listMotionProps()}
+               animate={!toggleMenu ? 'open' : 'closed'}
                transition={{
                   when: 'beforeChildren',
                   staggerChildren: 0.2,
                   type: 'just',
-                  duration: 0.3
+                  duration: 0.4
                }}
-               className={toggleMenu ? 'links' : 'links isMenuNotVisible'}>
+               className={!toggleMenu ? 'links' : 'links isMenuNotVisible'}>
                {
                   navLinks.map((link, i) => {
                      return (
                         <motion.li
                            variants={itemMotionProps}
-                           onClick={() => setToggleMenu(!toggleMenu)} key={i}><a className='link_item' href={link.url}>{link.name}</a></motion.li>
+                           onClick={() => setToggleMenu(!toggleMenu)} 
+                           key={i}>
+                           <a className='link_item' href={link.url}>{link.name}</a></motion.li>
                      )
                   })
                }

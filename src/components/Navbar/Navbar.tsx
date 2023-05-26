@@ -43,7 +43,7 @@ const Navbar = () => {
                <AiOutlineMenuUnfold className='menu_button' onClick={() => setToggleMenu(!toggleMenu)} />}
             <motion.ul
                variants={listMotionProps()}
-               animate={!toggleMenu ? 'open' : 'closed'}
+               animate={toggleMenu ? 'open' : 'closed'}
                transition={{
                   when: 'beforeChildren',
                   staggerChildren: 0.2,

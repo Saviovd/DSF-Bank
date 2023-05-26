@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-}
+   experimental: {
+      appDir: true,
+   },
+   plugins: [
+      [
+         'styled-components',{ ssr: true, displayName: true, preprocess: false },
+      ],
+   ],
+   compiler: {
+      styledComponents: true,
+   },
+};
 
-module.exports = nextConfig
+// eslint-disable-next-line no-undef
+exports = nextConfig;

@@ -24,7 +24,7 @@ const Testimonials = () => {
          <motion.h2 {...motionProps(100, 0, 1)} className='title'>{title}</motion.h2>
          <ul className='list'>
             {list.map((item, i) => (
-               <motion.li {...motionProps(-100, 0, i)} key={i}className='item'>
+               <motion.li {...motionProps(-100, 0, i)} key={i} className='item'>
                   <div className='heading'>
                      <Image className='avatar' src={item.avatar} alt={item.name} width={74} height={74}/>
                      <div className='about'>

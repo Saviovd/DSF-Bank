@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 export const RewardStyle = styled.section`
    max-width: 1600px;

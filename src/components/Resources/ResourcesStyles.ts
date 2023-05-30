@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 export const ResourcesStyles = styled.section`
    max-width: 1600px;

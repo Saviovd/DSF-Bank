@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 export const TestimonialStyle = styled.section`
    max-width: 1600px;

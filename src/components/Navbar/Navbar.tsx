@@ -8,21 +8,20 @@ import { motion } from 'framer-motion';
 
 const Navbar = () => {
 
-   const [toggleMenu, setToggleMenu] = React.useState(false);
+   const [toggleMenu, setToggleMenu] = React.useState(true);
+   const [isMobile, setIsMobile] = React.useState(false)
 
-
-   const listMotionProps = () => {
-      if (typeof window !== 'undefined' && window.innerWidth <= 850) {
-         return {
-            open: { opacity: 1, x: '-90%' },
-            closed: { opacity: 0, x: '70%' },
-         }
-      } 
-
-      return {
-         open: { opacity: 1, x: 0 },
-         closed: { opacity: 1, x: 0 },
+   React.useEffect(() => {
+      if (window.innerWidth < 800) {
+         setIsMobile(true)
+         setToggleMenu(false)
       }
+
+   }, [])
+
+   const listMotionProps = {
+      open: { opacity: 1, x: !isMobile ? 0 : '-80%' },
+      closed: { opacity: 0, x: '70%' },
    }
 
    const itemMotionProps = {
@@ -42,7 +41,7 @@ const Navbar = () => {
                <AiOutlineMenuFold className='menu_button' onClick={() => setToggleMenu(!toggleMenu)} /> :
                <AiOutlineMenuUnfold className='menu_button' onClick={() => setToggleMenu(!toggleMenu)} />}
             <motion.ul
-               variants={listMotionProps()}
+               variants={listMotionProps}
                animate={toggleMenu ? 'open' : 'closed'}
                transition={{
                   when: 'beforeChildren',
@@ -50,13 +49,13 @@ const Navbar = () => {
                   type: 'just',
                   duration: 0.4
                }}
-               className={!toggleMenu ? 'links' : 'links isMenuNotVisible'}>
+               className={toggleMenu ? 'links' : 'links isMenuNotVisible'}>
                {
                   navLinks.map((link, i) => {
                      return (
                         <motion.li
                            variants={itemMotionProps}
-                           onClick={() => setToggleMenu(!toggleMenu)} 
+                           onClick={() => setToggleMenu(!toggleMenu)}
                            key={i}>
                            <a className='link_item' href={link.url}>{link.name}</a></motion.li>
                      )
